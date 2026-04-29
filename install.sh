@@ -2,7 +2,7 @@
 set -euo pipefail
 APP_DIR="/opt/birdie"
 APP_USER="birdie"
-REPO_URL="https://github.com/REPLACE_ME/Birdie.git"
+REPO_URL="https://github.com/abwalker417/Birdie.git"
 REPO_BRANCH="main"
 APP_PORT="8080"
 DB_NAME="birdie"
