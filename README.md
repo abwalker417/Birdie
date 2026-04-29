@@ -1,47 +1,22 @@
 # Birdie
 
-Self-hosted golf GPS, scorecard, and shot-tracking app for Proxmox LXC.
+Complete repo package for a self-hosted Birdie install on Debian 12 / Proxmox LXC.
 
-## What this repo contains
+## Fixed in this package
+- Replaced broken `install.sh` with a complete installer that writes `.env`, installs backend/frontend deps, configures supervisor and nginx, and creates `update.sh`.
+- Added a proper `update.sh` for GitHub-driven updates instead of patching in the container.
+- Replaced the malformed Alembic `env.py` with a valid version.
+- Replaced the incomplete initial migration with a usable baseline schema.
+- Replaced the placeholder `models.py` with SQLAlchemy models.
+- Kept the frontend PWA config but adjusted caching behavior in nginx to reduce stale app issues.
 
-- `create.sh` — run on the Proxmox host to create the LXC with tteck-style prompts.
-- `install.sh` — run inside the LXC to install Birdie.
-- `update.sh` — run inside the LXC to safely update from GitHub.
-- `backend/` — FastAPI app, models, routes, and Alembic migrations.
-- `frontend/` — React + Vite app.
-- `deploy/` — nginx and supervisor configs.
-
-## Rules
-
-- GitHub is the only source of truth.
-- Do not edit files directly in the container.
-- Updates use `git fetch` + `git reset --hard origin/main`, not `git pull`.
-- Birdie serves locally on port `8080` by default.
-- Cloudflare or other HTTPS/tunnel setup is optional and handled separately.
-
-## Quick start
-
-### 1) Create the repo
-
-Create a new GitHub repo, then upload the contents of this folder as the initial commit.
-
-### 2) Run from the Proxmox host
-
-After replacing the repo URL inside `create.sh` and `install.sh`, run:
-
+## Usage
+Fresh install:
 ```bash
-bash create.sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/abwalker417/birdie/main/install.sh)"
 ```
 
-### 3) Open Birdie
-
-- App: `http://<LXC-IP>:8080`
-- API docs: `http://<LXC-IP>:8080/api/docs`
-
-## Update flow
-
-SSH or shell into the container, then run:
-
+Update after pushing to GitHub:
 ```bash
-/opt/birdie/update.sh
+/opt/birdie/app/update.sh
 ```
