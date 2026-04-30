@@ -1,0 +1,171 @@
+/* ─── Theme tokens ──────────────────────────────────────────────────────── */
+:root[data-theme="dark"] {
+  --bg:           #0b1410;
+  --surface-1:    #131e18;
+  --surface-2:    #1a2a22;
+  --surface-3:    #243528;
+  --border:       #2a3d31;
+  --border-strong:#3b5444;
+  --text-primary: #eaf3ec;
+  --text-secondary:#bcccc0;
+  --text-muted:   #7a8d80;
+  --green-300:    #6fe6a4;
+  --green-400:    #4ec88a;
+  --green-500:    #2faa6f;
+  --green-600:    #0f8a4f;
+  --green-700:    #0a5e36;
+  --gold-400:     #d6b66a;
+  --danger:       #ef6f6f;
+  --shadow:       0 6px 22px rgba(0,0,0,0.45);
+}
+
+:root[data-theme="light"] {
+  --bg:           #f6f9f4;
+  --surface-1:    #ffffff;
+  --surface-2:    #eef3eb;
+  --surface-3:    #dfe8db;
+  --border:       #d1ddcb;
+  --border-strong:#a9c0a3;
+  --text-primary: #0f1d15;
+  --text-secondary:#33493d;
+  --text-muted:   #6c7e72;
+  --green-300:    #2faa6f;
+  --green-400:    #1f9760;
+  --green-500:    #168451;
+  --green-600:    #0f8a4f;
+  --green-700:    #0a5e36;
+  --gold-400:     #a07a1d;
+  --danger:       #c93a3a;
+  --shadow:       0 6px 22px rgba(0,0,0,0.08);
+}
+
+:root {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                  'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+body { line-height: 1.4; }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 2px rgba(15,138,79,0.18);
+}
+
+a { color: var(--green-400); text-decoration: none; }
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  background: var(--bg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--green-600);
+  color: #fff;
+  transition: filter 0.15s, transform 0.05s;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-danger { background: var(--danger); color: #fff; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.input-row > label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Leaflet tweaks for theme legibility */
+.leaflet-container { background: var(--surface-2); font-family: var(--font-sans); }
+:root[data-theme="dark"] .leaflet-tile { filter: brightness(0.85) saturate(0.9); }
+.leaflet-control-attribution {
+  background: rgba(0,0,0,0.4) !important;
+  color: #cfd8d2 !important;
+  font-size: 10px !important;
+}
+:root[data-theme="light"] .leaflet-control-attribution {
+  background: rgba(255,255,255,0.85) !important;
+  color: #444 !important;
+}
