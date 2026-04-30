@@ -1,1 +1,0 @@
-export default function CourseSearch(){return <section className="panel stack"><h2>Course search</h2><input placeholder="Search by course, city, or state" /><div>Radius options: 5, 10, 25, 50 miles</div><button>Search</button></section>}
